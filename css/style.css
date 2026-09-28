@@ -127,11 +127,11 @@ p {
   flex-direction: column;
   gap: 14px;
   padding: 32px 0;
-  border-top: 1px solid var(--border);
+  border-top: 3px solid var(--border);
 }
 
 .project:last-child {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 3px solid var(--border);
 }
 
 .project-gallery {
