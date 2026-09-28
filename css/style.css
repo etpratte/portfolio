@@ -134,33 +134,19 @@ p {
   border-bottom: 3px solid var(--border);
 }
 
+/* Justified rows: images keep their proportions, every image in a row
+   shares one height, and each row fills the width. Layout is computed by
+   js/script.js, which sets each tile's width and height. */
 .project-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
-  align-items: start;
-}
-
-.project-gallery.count-1 {
-  grid-template-columns: 1fr;
-}
-
-/* 3x3 grid of square tiles (for projects with 9 images) */
-.project-gallery.grid-3x3 {
-  grid-template-columns: repeat(3, 1fr);
-  align-items: stretch;
-}
-
-.project-gallery.grid-3x3 .project-image {
-  aspect-ratio: 1 / 1;
-}
-
-.project-gallery.grid-3x3 .project-image img {
-  height: 100%;
-  object-fit: cover;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
 }
 
 .project-image {
+  flex: 0 0 auto;
+  width: 240px;               /* fallback until the script runs */
   border-radius: 4px;
   overflow: hidden;
   background: var(--bg-raised);
@@ -169,7 +155,8 @@ p {
 
 .project-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;          /* only trims sub-pixel rounding, not photos */
   display: block;
 }
 
@@ -220,12 +207,8 @@ p {
 }
 
 @media (max-width: 560px) {
-  .project-gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .project-gallery.grid-3x3 {
-    grid-template-columns: repeat(3, 1fr);
+  .project-image {
+    flex-basis: calc(var(--ar) * 120px);
   }
 }
 
