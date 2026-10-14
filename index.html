@@ -1,295 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>My dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#eef1f4;--panel:#fff;--ink:#1b2430;--mute:#66727f;--line:#d9dfe5;--acc:#0f766e;--accsoft:#d5ece9;--warn:#b4432f;
---serif:'Newsreader',Georgia,serif;--sans:'DM Sans',system-ui,-apple-system,sans-serif}
-@media (prefers-color-scheme:dark){:root{--bg:#12171d;--panel:#1a212a;--ink:#e6ebf0;--mute:#8d9aa8;--line:#2b3541;--acc:#5ec4b6;--accsoft:#1f3a38;--warn:#e58a76}}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--sans);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-button,input{font:inherit;color:inherit}
-button{cursor:pointer;background:none;border:0;padding:0}
-:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
-.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 48px}
-header{display:flex;align-items:center;gap:20px;margin-bottom:22px;flex-wrap:wrap}
-.ring{position:relative;width:96px;height:96px;flex:none}
-.ring svg{transform:rotate(-90deg)}
-.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 22px var(--serif)}
-.ring.sm{width:44px;height:44px}.ring.sm b{font:700 12px var(--sans)}
-.hd h1{font:700 34px/1.1 var(--serif);margin:0}
-.hd p{margin:4px 0 0;color:var(--mute)}
-.sync{margin-left:auto;text-align:right;color:var(--mute);font-size:13px}
-.btn{background:var(--acc);color:var(--bg);border-radius:8px;padding:7px 14px;font-weight:500}
-.ghost{color:var(--mute);padding:4px 8px;border-radius:6px}.ghost:hover{background:var(--accsoft);color:var(--ink)}
-main{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px}
-@media (max-width:760px){main{grid-template-columns:1fr}}
-h2{font:700 20px var(--serif);margin:0 0 10px}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
-section+section{margin-top:28px}
-.cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
-.cal-h h2{margin:0}
-.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
-.dow{color:var(--mute);font-size:12px;padding:4px 0}
-.day{aspect-ratio:1;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
-.day:hover{background:var(--accsoft)}
-.day.out{color:var(--mute);opacity:.5}
-.day.today{box-shadow:inset 0 0 0 1.5px var(--acc)}
-.day.sel{background:var(--acc);color:var(--bg)}
-.dots{display:flex;gap:3px;height:5px}.dots i{width:5px;height:5px;border-radius:50%;background:var(--acc)}
-.day.sel .dots i{background:var(--bg)}.dots i.t{background:var(--warn)}.day.sel .dots i.t{background:var(--bg)}
-.dayview{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
-.dayview h3{margin:0 0 6px;font-size:15px}
-.row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}
-.row:last-child{border-bottom:0}
-.row .t{flex:1;min-width:0;overflow-wrap:anywhere}
-.row.done .t{color:var(--mute);text-decoration:line-through}
-.time{color:var(--mute);font-size:13px;font-variant-numeric:tabular-nums}
-.chk{width:22px;height:22px;border-radius:50%;border:2px solid var(--mute);flex:none;display:grid;place-items:center}
-.done .chk{background:var(--acc);border-color:var(--acc)}
-.done .chk::after{content:"";width:6px;height:11px;border:solid var(--bg);border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
-.x{color:var(--mute);opacity:.6;padding:2px 6px}.x:hover{opacity:1;color:var(--warn)}
-.due{font-size:12px;color:var(--mute)}.due.late{color:var(--warn)}
-form{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-input[type=text],input[type=date],input[type=time]{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
-input[type=date],input[type=time]{flex:none}
-.empty{color:var(--mute);padding:8px 0}
-.list{margin-top:14px}
-.list-h{display:flex;align-items:center;gap:12px;margin-bottom:4px}
-.list-h h3{margin:0;flex:1;font:700 17px var(--serif)}
-.tag{font-size:12px;color:var(--mute)}
-#toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s}
-#toast.on{opacity:1}
-.gate{max-width:420px;margin:12vh auto;text-align:center}
-.gate h1{font:700 34px var(--serif)}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Project Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="wrap" id="app"></div>
-<div id="toast" role="status"></div>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<script>
-/* ============ SETUP: paste your Google OAuth Client ID here ============ */
-const CLIENT_ID = '751050802849-tfq9adfabsv9atanq4bco2naqj6na1pa.apps.googleusercontent.com';
-/* ======================================================================= */
+    <header>
+        <div class="wrap">
+            <p class="site-title"><a href="index.html">Personal Project Portfolio</a></p>
+            <nav>
+                <a href="index.html" aria-current="page">Home</a>
+                <a href="engineering.html">Engineering</a>
+                <a href="programming.html">Programming</a>
+                <a href="resume.html">Resume</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="wrap home-hero">
+            <h2>Hi, I'm Ethan.</h2>
+            <p class="lede">This is where I keep my engineering and programming projects, along with my resume. Have a look around.</p>
 
-const FILE = 'dashboard.json', SCOPE = 'https://www.googleapis.com/auth/drive.appdata';
-const $app = document.getElementById('app');
-const uid = () => Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-4);
-const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const ymd = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-const todayStr = () => ymd(new Date());
-const now = () => Date.now();
-
-let state = load() || {tasks: [], lists: [], events: []};
-let view = {month: new Date(new Date().getFullYear(), new Date().getMonth(), 1), sel: todayStr()};
-let token = null, exp = 0, tc = null, fileId = null, status = 'offline', signedIn = !!localStorage.getItem('dash-in');
-let saveTimer = null, busy = false;
-
-function load() { try { return JSON.parse(localStorage.getItem('dash-cache')); } catch (e) { return null; } }
-function cache() { try { localStorage.setItem('dash-cache', JSON.stringify(state)); } catch (e) {} }
-function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.className = 'on'; clearTimeout(toast.t); toast.t = setTimeout(() => t.className = '', 2600); }
-
-/* ---------- merge: union by id, newest edit (u) wins; deletions are tombstones ---------- */
-function mergeArr(a = [], b = [], nested) {
-  const m = new Map();
-  [...a, ...b].forEach(x => { const o = m.get(x.id); if (!o) m.set(x.id, x); else { const w = (x.u || 0) >= (o.u || 0) ? x : o; m.set(x.id, w); } });
-  if (nested) m.forEach((v, k) => { const o1 = a.find(z => z.id === k), o2 = b.find(z => z.id === k); v.items = mergeArr(o1 && o1.items, o2 && o2.items); });
-  return [...m.values()];
-}
-const merge = (a, b) => ({tasks: mergeArr(a.tasks, b.tasks), lists: mergeArr(a.lists, b.lists, true), events: mergeArr(a.events, b.events)});
-
-/* ---------- Google auth + Drive ---------- */
-function initAuth() {
-  if (!window.google || !google.accounts) return setTimeout(initAuth, 200);
-  tc = google.accounts.oauth2.initTokenClient({client_id: CLIENT_ID, scope: SCOPE, callback: () => {}});
-  if (signedIn) connect(''); else render();
-}
-function getToken(prompt) {
-  return new Promise((res, rej) => {
-    tc.callback = r => { if (r.error) return rej(r); token = r.access_token; exp = now() + (r.expires_in - 60) * 1000; res(token); };
-    tc.error_callback = e => rej(e);
-    tc.requestAccessToken({prompt});
-  });
-}
-async function api(url, opts = {}, retry = true) {
-  if (!token || now() > exp) await getToken('');
-  const r = await fetch(url, {...opts, headers: {...(opts.headers || {}), Authorization: 'Bearer ' + token}});
-  if (r.status === 401 && retry) { token = null; return api(url, opts, false); }
-  if (!r.ok) throw new Error('Drive ' + r.status);
-  return r;
-}
-async function connect(prompt) {
-  try {
-    await getToken(prompt);
-    localStorage.setItem('dash-in', '1'); signedIn = true;
-    await pull(true);
-    startPolling();
-  } catch (e) { status = 'offline'; signedIn = false; localStorage.removeItem('dash-in'); render(); }
-}
-async function findFile() {
-  const q = encodeURIComponent("name='" + FILE + "'");
-  const r = await (await api('https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&fields=files(id)&q=' + q)).json();
-  return r.files[0] ? r.files[0].id : null;
-}
-async function readRemote() {
-  if (!fileId) fileId = await findFile();
-  if (!fileId) return null;
-  return (await api('https://www.googleapis.com/drive/v3/files/' + fileId + '?alt=media')).json();
-}
-async function writeRemote(data) {
-  const body = JSON.stringify(data);
-  if (fileId) { await api('https://www.googleapis.com/upload/drive/v3/files/' + fileId + '?uploadType=media', {method: 'PATCH', headers: {'Content-Type': 'application/json'}, body}); return; }
-  const b = 'dashb' + uid(), meta = JSON.stringify({name: FILE, parents: ['appDataFolder']});
-  const mp = '--' + b + '\r\nContent-Type: application/json\r\n\r\n' + meta + '\r\n--' + b + '\r\nContent-Type: application/json\r\n\r\n' + body + '\r\n--' + b + '--';
-  const r = await (await api('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id', {method: 'POST', headers: {'Content-Type': 'multipart/related; boundary=' + b}, body: mp})).json();
-  fileId = r.id;
-}
-async function pull(first) {
-  if (busy) return; busy = true; status = 'syncing'; render(true);
-  try {
-    const remote = await readRemote();
-    if (remote) { const before = JSON.stringify(state); state = merge(state, remote); if (first || JSON.stringify(state) !== before) { cache(); } }
-    if (!remote || JSON.stringify(state) !== JSON.stringify(remote)) await writeRemote(state);
-    status = 'synced'; render();
-  } catch (e) { status = 'error'; render(); }
-  busy = false;
-}
-function startPolling() {
-  if (startPolling.on) return; startPolling.on = true;
-  setInterval(() => { if (!document.hidden && signedIn && !saveTimer) pull(); }, 25000);
-  document.addEventListener('visibilitychange', () => { if (!document.hidden && signedIn && !saveTimer) pull(); });
-}
-function changed() {
-  cache(); render();
-  if (!signedIn) return;
-  status = 'saving'; clearTimeout(saveTimer);
-  saveTimer = setTimeout(async () => { saveTimer = null; busy = false; await pull(); }, 700);
-}
-
-/* ---------- data helpers ---------- */
-const live = a => a.filter(x => !x.del);
-const isDone = (it, l) => l.daily ? it.day === todayStr() : !!it.done;
-const ring = (pct, size, sw) => {
-  const r = (size - sw) / 2, c = 2 * Math.PI * r;
-  return `<svg width="${size}" height="${size}"><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="var(--line)" stroke-width="${sw}"/><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="var(--acc)" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c * (1 - pct)}"/></svg>`;
-};
-function todayProgress() {
-  const t = todayStr(); let tot = 0, done = 0;
-  live(state.tasks).forEach(x => { if (!x.due || x.due <= t) { tot++; if (x.done) done++; } });
-  live(state.lists).forEach(l => live(l.items).forEach(i => { if (l.daily) { tot++; if (isDone(i, l)) done++; } }));
-  return {tot, done};
-}
-
-/* ---------- render ---------- */
-function render(soft) {
-  if (!signedIn) {
-    $app.innerHTML = `<div class="gate"><h1>My dashboard</h1><p class="empty">Sign in with Google to load your data from your own Drive. Nothing is stored anywhere else.</p><button class="btn" data-a="signin">Sign in with Google</button></div>`;
-    return;
-  }
-  if (soft && $app.querySelector('input:focus')) { const s = document.getElementById('sync'); if (s) s.textContent = statusText(); return; }
-  const focus = document.activeElement && document.activeElement.name;
-  const p = todayProgress(), pct = p.tot ? p.done / p.tot : 0;
-  const d = new Date(), t = todayStr();
-  $app.innerHTML = `
-  <header>
-    <div class="ring">${ring(pct, 96, 9)}<b>${p.tot ? Math.round(pct * 100) + '%' : '–'}</b></div>
-    <div class="hd"><h1>${d.toLocaleDateString(undefined, {weekday: 'long'})}</h1><p>${d.toLocaleDateString(undefined, {month: 'long', day: 'numeric'})} · ${p.tot ? p.done + ' of ' + p.tot + ' done today' : 'Nothing due today'}</p></div>
-    <div class="sync"><span id="sync">${statusText()}</span><br><button class="ghost" data-a="sync">Sync now</button><button class="ghost" data-a="backup">Back up</button></div>
-  </header>
-  <main>
-    <div>${calendar()}</div>
-    <div>${todos()}${lists()}</div>
-  </main>`;
-  if (focus) { const el = $app.querySelector(`[name="${focus}"]`); if (el) el.focus(); }
-}
-const statusText = () => ({synced: 'Synced', syncing: 'Syncing…', saving: 'Saving…', error: 'Sync failed, will retry', offline: 'Offline'}[status]);
-
-function calendar() {
-  const m = view.month, y = m.getFullYear(), mo = m.getMonth(), t = todayStr();
-  const first = new Date(y, mo, 1), start = new Date(y, mo, 1 - first.getDay());
-  const evs = live(state.events), tks = live(state.tasks).filter(x => x.due && !x.done);
-  let cells = ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(x => `<div class="dow">${x}</div>`).join('');
-  for (let i = 0; i < 42; i++) {
-    const c = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i), s = ymd(c);
-    const ne = evs.filter(e => e.date === s).length, nt = tks.filter(x => x.due === s).length;
-    const dots = '<i></i>'.repeat(Math.min(ne, 2)) + '<i class="t"></i>'.repeat(Math.min(nt, 2));
-    cells += `<button class="day${c.getMonth() !== mo ? ' out' : ''}${s === t ? ' today' : ''}${s === view.sel ? ' sel' : ''}" data-a="pick" data-v="${s}" aria-label="${s}"><span>${c.getDate()}</span><span class="dots">${dots}</span></button>`;
-  }
-  const selD = new Date(view.sel + 'T00:00');
-  const dayEv = evs.filter(e => e.date === view.sel).sort((a, b) => (a.time || '').localeCompare(b.time || ''));
-  const dayTk = tks.filter(x => x.due === view.sel);
-  return `<div class="panel"><div class="cal-h"><h2>${m.toLocaleDateString(undefined, {month: 'long', year: 'numeric'})}</h2><span><button class="ghost" data-a="prev" aria-label="Previous month">‹</button><button class="ghost" data-a="today">Today</button><button class="ghost" data-a="next" aria-label="Next month">›</button></span></div>
-  <div class="grid">${cells}</div>
-  <div class="dayview"><h3>${selD.toLocaleDateString(undefined, {weekday: 'long', month: 'short', day: 'numeric'})}</h3>
-  ${dayEv.map(e => `<div class="row"><span class="time">${esc(e.time || 'all day')}</span><span class="t">${esc(e.t)}</span><button class="x" data-a="delev" data-v="${e.id}" aria-label="Delete event">✕</button></div>`).join('')}
-  ${dayTk.map(x => `<div class="row"><span class="time">due</span><span class="t">${esc(x.t)}</span></div>`).join('')}
-  ${dayEv.length + dayTk.length ? '' : '<div class="empty">Nothing planned. Add an event below.</div>'}
-  <form data-f="event"><input type="text" name="evt" placeholder="New event" required><input type="time" name="evtime" aria-label="Time"><button class="btn">Add event</button></form></div></div>`;
-}
-
-function todos() {
-  const t = todayStr();
-  const items = live(state.tasks).sort((a, b) => (a.done - b.done) || (a.due || '9').localeCompare(b.due || '9') || a.u - b.u);
-  return `<section><h2>To-do</h2>${items.length ? items.map(x => `<div class="row${x.done ? ' done' : ''}"><button class="chk" data-a="tog" data-v="${x.id}" aria-label="Toggle"></button><span class="t">${esc(x.t)}</span>${x.due ? `<span class="due${!x.done && x.due < t ? ' late' : ''}">${x.due === t ? 'today' : x.due}</span>` : ''}<button class="x" data-a="deltask" data-v="${x.id}" aria-label="Delete">✕</button></div>`).join('') : '<div class="empty">No tasks yet.</div>'}
-  <form data-f="task"><input type="text" name="task" placeholder="Add a task" required><input type="date" name="due" aria-label="Due date"><button class="btn">Add</button></form>
-  ${items.some(x => x.done) ? '<button class="ghost" data-a="clear">Clear completed</button>' : ''}</section>`;
-}
-
-function lists() {
-  const ls = live(state.lists);
-  return `<section><h2>Checklists</h2>${ls.map(l => {
-    const its = live(l.items), n = its.filter(i => isDone(i, l)).length, pct = its.length ? n / its.length : 0;
-    return `<div class="panel list"><div class="list-h"><div class="ring sm">${ring(pct, 44, 5)}<b>${n}/${its.length}</b></div><h3>${esc(l.name)}</h3><span class="tag">${l.daily ? 'resets daily' : ''}</span><button class="x" data-a="dellist" data-v="${l.id}" aria-label="Delete list">✕</button></div>
-    ${its.map(i => `<div class="row${isDone(i, l) ? ' done' : ''}"><button class="chk" data-a="item" data-l="${l.id}" data-v="${i.id}" aria-label="Toggle"></button><span class="t">${esc(i.t)}</span><button class="x" data-a="delitem" data-l="${l.id}" data-v="${i.id}" aria-label="Delete">✕</button></div>`).join('')}
-    <form data-f="item" data-l="${l.id}"><input type="text" name="i${l.id}" placeholder="Add item" required><button class="btn">Add</button></form></div>`;
-  }).join('') || '<div class="empty">Make a list for groceries, packing, or daily habits.</div>'}
-  <form data-f="list"><input type="text" name="list" placeholder="New checklist name" required><label class="tag" style="display:flex;align-items:center;gap:6px"><input type="checkbox" name="daily"> Daily habits</label><button class="btn">Create</button></form></section>`;
-}
-
-/* ---------- events ---------- */
-$app.addEventListener('click', e => {
-  const b = e.target.closest('[data-a]'); if (!b) return;
-  const a = b.dataset.a, v = b.dataset.v, u = now();
-  const task = () => state.tasks.find(x => x.id === v);
-  const list = () => state.lists.find(x => x.id === b.dataset.l);
-  if (a === 'signin') return connect('consent');
-  if (a === 'sync') return pull(true);
-  if (a === 'backup') return backup();
-  if (a === 'pick') { view.sel = v; return render(); }
-  if (a === 'prev') { view.month = new Date(view.month.getFullYear(), view.month.getMonth() - 1, 1); return render(); }
-  if (a === 'next') { view.month = new Date(view.month.getFullYear(), view.month.getMonth() + 1, 1); return render(); }
-  if (a === 'today') { view.month = new Date(new Date().getFullYear(), new Date().getMonth(), 1); view.sel = todayStr(); return render(); }
-  if (a === 'tog') { const t = task(); t.done = !t.done; t.u = u; }
-  if (a === 'deltask') { const t = task(); t.del = true; t.u = u; }
-  if (a === 'clear') state.tasks.forEach(t => { if (t.done && !t.del) { t.del = true; t.u = u; } });
-  if (a === 'delev') { const x = state.events.find(z => z.id === v); x.del = true; x.u = u; }
-  if (a === 'dellist') { const l = state.lists.find(z => z.id === v); l.del = true; l.u = u; }
-  if (a === 'item') { const l = list(), i = l.items.find(z => z.id === v); if (l.daily) i.day = i.day === todayStr() ? '' : todayStr(); else i.done = !i.done; i.u = u; }
-  if (a === 'delitem') { const i = list().items.find(z => z.id === v); i.del = true; i.u = u; }
-  changed();
-});
-$app.addEventListener('submit', e => {
-  e.preventDefault(); const f = e.target, k = f.dataset.f, d = new FormData(f), u = now();
-  if (k === 'task') state.tasks.push({id: uid(), t: d.get('task').trim(), done: false, due: d.get('due') || '', u});
-  if (k === 'event') state.events.push({id: uid(), t: d.get('evt').trim(), date: view.sel, time: d.get('evtime') || '', u});
-  if (k === 'list') state.lists.push({id: uid(), name: d.get('list').trim(), daily: !!d.get('daily'), items: [], u});
-  if (k === 'item') { const l = state.lists.find(x => x.id === f.dataset.l); l.items.push({id: uid(), t: d.get('i' + l.id).trim(), done: false, day: '', u}); }
-  changed();
-});
-function backup() {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], {type: 'application/json'}));
-  a.download = 'dashboard-backup-' + todayStr() + '.json'; a.click(); toast('Backup downloaded');
-}
-window.addEventListener('online', () => signedIn && pull());
-render();
-window.addEventListener('load', initAuth);
-</script>
+            <div class="home-links">
+                <a href="engineering.html">
+                    <span class="label">Engineering Projects</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
+                <a href="programming.html">
+                    <span class="label">Programming Projects</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
+                <a href="resume.html">
+                    <span class="label">Resume</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="wrap">
+            <p>&copy; 2026 Ethan Pratte</p>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
 </body>
 </html>

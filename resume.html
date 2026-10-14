@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume — Personal Project Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <p class="site-title"><a href="index.html">Personal Project Portfolio</a></p>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="engineering.html">Engineering</a>
+                <a href="programming.html">Programming</a>
+                <a href="resume.html" aria-current="page">Resume</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="wrap">
+            <h2>Resume</h2>
+
+            <div class="resume-actions">
+                <a href="resume.pdf" class="btn primary" download>Download PDF</a>
+                <a href="resume.pdf" class="btn" target="_blank" rel="noopener">Open in new tab</a>
+            </div>
+
+            <div class="pdf-viewer">
+                <div class="pdf-toolbar">
+                    <div class="pdf-zoom">
+                        <button type="button" id="zoom-out" aria-label="Zoom out">&minus;</button>
+                        <span class="pdf-zoom-level" id="zoom-level">100%</span>
+                        <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+                    </div>
+                    <span class="pdf-page-info" id="page-info"></span>
+                </div>
+                <div class="pdf-canvas-area" id="pdf-canvas-area">
+                    <div class="pdf-status" id="pdf-status">Loading resume&hellip;</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="wrap">
+            <p>&copy; 2026 Ethan Pratte</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/resume-viewer.js"></script>
+</body>
+</html>
